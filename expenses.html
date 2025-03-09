@@ -27,7 +27,8 @@
         <button onclick="addExpense()">Add Expense</button>
         <p id="inv"></p>
         <button onclick="showExpense()">Show Expense Details</button>
-        <table>
+        <button onclick="hideExpense()">Hide Expense Details</button>
+        <table id="table">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -39,6 +40,14 @@
             </thead>
             <tbody id="expense"></tbody>
         </table>
+        <div id="piechart"></div>
+        <div id="legend">
+            <div id="color"><span id="green"></span>Food</div>
+            <div id="color"><span id="red"></span>Transport</div>
+            <div id="color"><span id="blue"></span>Shopping</div>
+            <div id="color"><span id="orange"></span>Entertainment</div>
+            <div id="color"><span id="lightgray"></span>Others</div>
+        </div>
         <script src="expense.js"></script>
     </body>
 

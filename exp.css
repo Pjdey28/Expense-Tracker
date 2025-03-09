@@ -1,0 +1,51 @@
+#piechart{
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%;
+}
+#legend{
+    display:flex;
+    margin-top:20px;
+    gap: 10px; 
+    flex-wrap: wrap; 
+
+}
+#color{
+    display: flex;
+    align-items: center;
+}
+#green{
+    background: green;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right:10px;
+}
+#red{
+    background: red;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right:10px;
+}
+#blue{
+    background: blue;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right:10px;
+}
+#orange{
+    background: orange;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right:10px;
+}
+#lightgray{
+    background: lightgray;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right:10px;
+}
