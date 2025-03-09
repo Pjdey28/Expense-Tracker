@@ -1,3 +1,7 @@
+if (!sessionStorage.getItem("browser")) {
+    localStorage.clear();
+    sessionStorage.setItem("browser", "true");
+}
 let expense=JSON.parse(localStorage.getItem("expense")) || [];
 window.onload = function () {
     if (localStorage.getItem("balance")) {
