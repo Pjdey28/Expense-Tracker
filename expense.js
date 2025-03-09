@@ -3,31 +3,45 @@ window.onload = function () {
     if (localStorage.getItem("balance")) {
         document.querySelector("#remain_balance").innerHTML = localStorage.getItem("balance");
     }
-    if (expense.length > 0) {
-        showExpense();  
-    }
 };
 document.querySelector("#table").style.visibility="hidden";
 document.querySelector("#legend").style.visibility="hidden";
 
 function setBalance(){
     const balance=document.getElementById("balance").value;
+    const max=document.getElementById("daily_limit").value;
     if (balance<=0)
         document.getElementById("invalid").innerHTML="Please enter a valid balance";
     localStorage.setItem("balance",balance);
+    localStorage.setItem("limit",max);
     document.querySelector("#remain_balance").innerHTML=balance;
 }
 
 function addExpense(){
+    document.querySelector("#inv").innerHTML="";
+    document.querySelector("#max").innerHTML="";
     const des=document.querySelector("#desc").value;
     const amt=Number(document.querySelector("#amount").value);
     const date=document.querySelector("#date").value;
     const catg=document.querySelector("#category").value;
     if (amt<=0)
-        document.querySelector("#inv").innerText="Please enter valid amount";
+        document.querySelector("#inv").innerHTML="Please enter valid amount";
     let balance=Number(localStorage.getItem("balance"));
+    let max_limit=Number(localStorage.getItem("limit"));
+    let ex = JSON.parse(localStorage.getItem("expense")) || [];
     if (amt>balance){
-        document.querySelector("#inv").innerText="Insufficient balance";
+        document.querySelector("#inv").innerHTML="Insufficient balance";
+        return;
+    }
+    let exp_date=ex.filter(e=>{
+        return e.date==date;
+    });
+    let total_day=exp_date.reduce((sum,e)=>{
+        return sum+Number(e.amt);
+    },0);
+    if((total_day+amt)>max_limit)
+    {
+        document.querySelector("#max").innerHTML="Maximum daily limit reached";
         return;
     }
     balance-=amt;
@@ -37,6 +51,12 @@ function addExpense(){
     showExpense();
 }
 function showExpense(){
+    if (expense.length==0){
+        document.querySelector("#table").style.visibility="hidden";
+        document.querySelector("#piechart").style.visibility="hidden";
+        document.querySelector("#legend").style.visibility="hidden";
+        return;
+    }
     document.querySelector("#table").style.visibility="visible";
     document.querySelector("#piechart").style.visibility="visible";
     document.querySelector("#legend").style.visibility="visible";
@@ -49,7 +69,8 @@ function showExpense(){
                 tr.innerHTML =  '<td>'+exp.date+'</td>'+
                                 '<td>'+exp.des+'</td>'+
                                 '<td>'+exp.amt+'</td>'+
-                                '<td>'+exp.catg+'</td>';
+                                '<td>'+exp.catg+'</td>'+
+                                `<td><button class="delete" onclick="deleteExpense(${i}, ${exp.amt})">Delete</button></td>`;
                 expense_list.appendChild(tr);
         let amount=Number(exp.amt);
         if (exp.catg=='Food')
@@ -72,11 +93,20 @@ function showExpense(){
     document.querySelector("#piechart").style.background = `conic-gradient(green 0% ${food}%,red ${food}% ${transport}%, blue ${transport}% ${shop}%, orange ${shop}% ${entertain}%, lightgray ${entertain}% 100%)`;
     document.querySelector("#remain_balance").innerHTML=localStorage.getItem("balance");
     console.log(total);
-    //'<td><button class="delete-btn" onclick="deleteExpense(${index}, ${expense.amount})">❌</button></td>;';
 }
 function hideExpense(){
     document.querySelector("#table").style.visibility="hidden";
     document.querySelector("#piechart").style.visibility="hidden";
     document.querySelector("#legend").style.visibility="hidden";
+}
+function deleteExpense(k, amount) {
+    let balance=Number(localStorage.getItem("balance"));
+    balance +=Number(amount);
+    localStorage.setItem("balance", balance);
+    let e = JSON.parse(localStorage.getItem("expense")) || [];
+    e.splice(k,1);
+    localStorage.setItem("expense",JSON.stringify(e));
+    expense=e;
+    showExpense();
 }
 

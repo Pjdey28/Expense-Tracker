@@ -11,6 +11,7 @@
             Expense Tracker
         </h1>
         <input type="number" id="balance" placeholder="Enter Account Balance">
+        <input type="number" id="daily_limit" placeholder="Enter Maximum Daily Limit">
         <button onclick="setBalance()">Set Account Balance</button>
         <p id="invalid"></p>
         <h3>Remaining Balance: <span id="remain_balance"></span></h3>
@@ -26,6 +27,7 @@
         </select>
         <button onclick="addExpense()">Add Expense</button>
         <p id="inv"></p>
+        <div><p id="max"></p></div>
         <button onclick="showExpense()">Show Expense Details</button>
         <button onclick="hideExpense()">Hide Expense Details</button>
         <table id="table">
