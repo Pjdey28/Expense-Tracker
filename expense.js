@@ -8,6 +8,7 @@ window.onload = function () {
         document.querySelector("#remain_balance").innerHTML = localStorage.getItem("balance");
     }
 };
+document.querySelector("#blur").style.visibility="hidden";
 document.querySelector("#table").style.visibility="hidden";
 document.querySelector("#legend").style.visibility="hidden";
 
@@ -56,11 +57,13 @@ function addExpense(){
 }
 function showExpense(){
     if (expense.length==0){
+        document.querySelector("#blur").style.visibility="hidden";
         document.querySelector("#table").style.visibility="hidden";
         document.querySelector("#piechart").style.visibility="hidden";
         document.querySelector("#legend").style.visibility="hidden";
         return;
     }
+    document.querySelector("#blur").style.visibility="visible";
     document.querySelector("#table").style.visibility="visible";
     document.querySelector("#piechart").style.visibility="visible";
     document.querySelector("#legend").style.visibility="visible";
@@ -99,6 +102,7 @@ function showExpense(){
     console.log(total);
 }
 function hideExpense(){
+    document.querySelector("#blur").style.visibility="hidden";
     document.querySelector("#table").style.visibility="hidden";
     document.querySelector("#piechart").style.visibility="hidden";
     document.querySelector("#legend").style.visibility="hidden";
