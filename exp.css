@@ -168,7 +168,7 @@ th {
 select,#date,option{
     cursor: pointer;
 }
-#id,#max{
+#inv,#max{
     font-size: larger ;
     color: #dc3545;
     font-weight: bold;

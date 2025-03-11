@@ -35,7 +35,7 @@ function addExpense(){
     let max_limit=Number(localStorage.getItem("limit"));
     let ex = JSON.parse(localStorage.getItem("expense")) || [];
     if (amt>balance){
-        document.querySelector("#inv").innerHTML="Insufficient balance";
+        document.querySelector("#inv").innerHTML="Insufficient balance !!";
         return;
     }
     let exp_date=ex.filter(e=>{
@@ -46,7 +46,7 @@ function addExpense(){
     },0);
     if((total_day+amt)>max_limit)
     {
-        document.querySelector("#max").innerHTML="Maximum daily limit reached";
+        document.querySelector("#max").innerHTML="Maximum daily limit reached !!";
         return;
     }
     balance-=amt;
@@ -115,6 +115,5 @@ function deleteExpense(k, amount) {
     e.splice(k,1);
     localStorage.setItem("expense",JSON.stringify(e));
     expense=e;
-    showExpense();
+    showExpense(); 
 }
-
