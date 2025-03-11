@@ -54,7 +54,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
-button:hover {
+button:hover, button:active {
     background-color: #2a9e51;
     transform: scale(1.05);
 }
@@ -168,7 +168,7 @@ th {
 select,#date,option{
     cursor: pointer;
 }
-#inv,#max{
+#max,#invalid,#inv{
     font-size: larger ;
     color: #dc3545;
     font-weight: bold;
