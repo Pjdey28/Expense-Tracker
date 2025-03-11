@@ -54,10 +54,15 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
-button:hover, button:active {
+button:hover {
     background-color: #2a9e51;
     transform: scale(1.05);
 }
+button:focus {
+    outline: none;  
+    background-color: #235af0; 
+}
+
 #blur{
     background: rgba(255, 255, 255, 0.3); 
     backdrop-filter: blur(4px);
@@ -91,7 +96,7 @@ th {
     color: rgb(8, 141, 21);
 }
 .delete {
-    background: #dc3545;
+    background: #e05866;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -103,6 +108,10 @@ th {
 .delete:hover {
     background: #c82333;
     transform: scale(1.1);
+}
+.delete:focus{
+    background: #e05866;
+    outline: none;
 }
 
 
@@ -193,5 +202,13 @@ select,#date,option{
     #category{
         width:200px;
     }
+    #balance{
+        max-width: fit-content;
+        width:200px;
+    }
+    input, select, button {
+        width: 90%;
+        font-size: 14px;
+    }
 
-}
+} 

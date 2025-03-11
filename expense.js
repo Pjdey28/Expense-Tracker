@@ -2,11 +2,7 @@ if (!sessionStorage.getItem("browser")) {
     localStorage.clear();
     sessionStorage.setItem("browser", "true");
 }
-document.querySelectorAll("button").forEach(button => {
-    button.addEventListener("touchend", () => {
-        setTimeout(() => button.style.backgroundColor = "#2a9e51", 150);  
-    });
-});
+
 let expense=JSON.parse(localStorage.getItem("expense")) || [];
 window.onload = function () {
     if (localStorage.getItem("balance")) {
