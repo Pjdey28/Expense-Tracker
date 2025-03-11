@@ -16,7 +16,10 @@ function setBalance(){
     const balance=document.getElementById("balance").value;
     const max=document.getElementById("daily_limit").value;
     if (balance<=0)
+    {
         document.getElementById("invalid").innerHTML="Please enter a valid balance";
+        return;
+    }
     localStorage.setItem("balance",balance);
     localStorage.setItem("limit",max);
     document.querySelector("#remain_balance").innerHTML=balance;
@@ -29,8 +32,10 @@ function addExpense(){
     const amt=Number(document.querySelector("#amount").value);
     const date=document.querySelector("#date").value;
     const catg=document.querySelector("#category").value;
-    if (amt<=0)
+    if (amt<=0){
         document.querySelector("#inv").innerHTML="Please enter valid amount";
+        return;
+    }
     let balance=Number(localStorage.getItem("balance"));
     let max_limit=Number(localStorage.getItem("limit"));
     let ex = JSON.parse(localStorage.getItem("expense")) || [];
